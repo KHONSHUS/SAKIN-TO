@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Life's Journey</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f2f4f7;
+      color: #333;
+      margin: 0;
+    }
+
+    .header {
+      position: relative;
+      padding: 40px 30px;
+      font-size: 40px;
+      text-align: center;
+      color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      background-color: #1e3a5f;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: 2px solid #305e8c;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("headerimage.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.3;
+      z-index: 0;
+      border-radius: 15px;
+    }
+
+    .header * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .leftcolumn {
+      flex: 75%;
+      padding-right: 20px;
+    }
+
+    .rightcolumn {
+      flex: 25%;
+      padding-left: 20px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-image {
+      display: block;
+      margin: 20px auto 10px auto;
+      width: 60%;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid #d6e0ea;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .footer {
+      background-color: #1e2b3a;
+      color: #f5f5f5;
+      padding: 40px 20px;
+      margin-top: 60px;
+      font-size: 14px;
+      text-align: center;
+      border-top: 3px solid #4c5c6e;
+    }
+
+    .footer p {
+      margin: 8px 0;
+    }
+
+    .footer span {
+      display: block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #aab6c5;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .popular-post {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      text-align: center;
+    }
+
+    .popular-post img {
+      width: 100%;
+      cursor: pointer;
+      border-radius: 10px;
+      border: 2px solid #d0dce6;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .popular-post img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 99;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .modal-content, #caption {
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+      from {transform:scale(0)} 
+      to {transform:scale(1)}
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #bbb;
+    }
+
+    @media screen and (max-width: 800px) {
+      .leftcolumn, .rightcolumn {
+        flex: 100%;
+        padding: 0;
+      }
+
+      .card-image {
+        width: 90%;
+      }
+
+      .popular-post {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    .contact-card {
+      background-color: #eaf4fb;
+      border: 2px solid #3498db;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-card h3 {
+      color: #3498db;
+    }
+
+    .contact-card a, .contact-card span {
+      color: #2c3e50;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      color: #3498db;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h2>My Life's Journey</h2>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>Film day</h2>
+        <h5>Shooting a project, March 22, 2025</h5>
+        <img src="groupimage.jpg" class="card-image">
+        <p class="justify" style="max-width: 1150px; margin: 20px auto 0 auto;">
+          We filmed our project to show the effects of the continuous problems happening at school — especially the issue of unfair grading. 
+          During filming, we shared real situations and personal experiences that many students face but are often ignored. 
+          We worked together to act out scenes that show how unfair grading can affect a student's confidence and motivation. 
+          It was challenging but meaningful — we had to plan every scene carefully to make sure it reflected the reality in school. 
+          Filming helped me realize that this issue is not just about grades, but also about how students are treated. 
+          Through this project, we were able to express our feelings and speak up about something that really matters to us.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Developing system</h2>
+        <h5>Implementing library management software, October 12, 2024</h5>
+        <img src="groupimage2.jpg" class="card-image">
+        <p class="justify" style="max-width: 1150px; margin: 20px auto 0 auto;">
+          We worked together to build a system that would not only meet the requirements, but also stand out. 
+          Throughout the process, we helped one another — reviewing codes, fixing errors, and constantly improving our project. 
+          One of the most important parts of our journey was brainstorming. We shared ideas, discussed problems, and explored possible solutions together as a team. 
+          It wasn’t always easy, but the collaboration made the process smoother and more meaningful. As time went on, we saw how our efforts started to pay off. 
+          We were proud to be selected as part of the CITE Expo, and even more proud when we were chosen as one of the Top 3 teams. This experience taught us the value of teamwork, persistence, and believing in what we can achieve together.
+        </p>
+      </div>
+    </div>
+
+    <div class="rightcolumn">
+      <div class="card" style="text-align: center;">
+        <h2>About Me</h2>
+        <img src="imageme.jpg" style="height:100px; border-radius: 50%; display: block; margin: 0 auto;">
+        <p class="justify" style="max-width: 90%; margin: 10px auto;">
+          Hi, I’m Ardy T. Manganti, a BSIT student at PHINMA Saint Jude College - Manila. I enjoy learning and exploring the world of coding, 
+          especially when creating programs that solve real problems. I'm also passionate about music and movies—they help me relax, stay inspired, 
+          and spark new ideas. I always aim to finish my tasks on time and stay committed to doing my best in both school and personal projects.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Popular Post</h3>
+        <div class="popular-post">
+          <img src="image1.jpg" onclick="openModal(this.src)">
+          <img src="image2.jpg" onclick="openModal(this.src)">
+          <img src="image3.jpg" onclick="openModal(this.src)">
+          <img src="image4.jpg" onclick="openModal(this.src)">
+          <img src="image5.jpg" onclick="openModal(this.src)">
+          <img src="image6.jpg" onclick="openModal(this.src)">
+        </div>
+      </div>
+
+      <div class="card contact-card">
+        <h3>Contact Me</h3>
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+          <img src="icon1.png" alt="Facebook" class="contact-icon">
+          <a href="https://www.facebook.com/ardy.manganti.927" target="_blank">facebook.com/ardy.manganti.927</a>
+        </div>
+
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+          <img src="icon2.png" alt="LinkedIn" class="contact-icon">
+          <a href="https://www.linkedin.com/in/ardytuazonmanganti/" target="_blank">linkedin.com/in/ardytuazonmanganti</a>
+        </div>
+
+        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+          <img src="icon3.png" alt="Email" class="contact-icon">
+          <a href="mailto:mangantiardy6@gmail.com">mangantiardy6@gmail.com</a>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+          <img src="icon4.png" alt="Phone" class="contact-icon">
+          <span>09773970032</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2025 Ardy T. Manganti. All rights reserved.</p>
+    <p>Sharing stories, thoughts, and moments.</p>
+    <span>PHINMA Saint Jude College - BSIT</span>
+  </div>
+
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <script>
+    function openModal(src) {
+      var modal = document.getElementById("myModal");
+      var modalImg = document.getElementById("modalImg");
+      modal.style.display = "block";
+      modalImg.src = src;
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
